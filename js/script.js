@@ -41,26 +41,6 @@ const testimonials = [
     body: "« Merci Raissa. Merci d'avoir sublimé la salle. Merci encore pour tes services, que Dieu te bénisse. »",
     author: '— A & A',
   },
-  {
-    quote: "« On ne s'arrête pas de parler de la beauté de cette journée »",
-    body: "« Merci d'avoir fait de notre rêve une réalité ! Nous n'aurions pas pu imaginer une journée plus douce, naturelle, légère et sincère. Tout ce que nous voulions, et bien plus encore. »",
-    author: '— Sophie & Aurélien',
-  },
-  {
-    quote: '« Une attention si personnelle, du premier au dernier instant »',
-    body: '« Je me suis sentie écoutée et comprise dès notre premier échange. Chaque détail portait votre signature. »',
-    author: '— Mme Kalonji',
-  },
-  {
-    quote: '« Une énergie et un goût incroyables »',
-    body: "« Raissa a transformé notre vision en une journée parfaite. Nous referions appel à elle sans hésiter ! »",
-    author: '— Laura & Ben',
-  },
-  {
-    quote: '« Professionnelle, calme, et tellement créative »',
-    body: '« Notre mariage lui doit tout son éclat. Un accompagnement rassurant du début à la fin. »',
-    author: '— Nadia & Yanis',
-  },
 ];
 
 let testimonialIndex = 0;
