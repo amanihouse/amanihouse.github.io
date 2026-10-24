@@ -27,6 +27,21 @@ if (heroSlides.length > 1) {
 // Carrousel d'avis clients : PREV / NEXT font defiler citation + auteur
 const testimonials = [
   {
+    quote: "« Je vous recommande à 1000 % »",
+    body: "« Juste te dire MERCI à toi et à Salomon pour votre travail… J'ai piqué beaucoup de crises mais tu as hyper bien géré les problèmes ! Très heureuse de vous avoir choisis, j'ai pas les mots. Vous avez tout fait pour que la journée soit top et ça a été un succès, j'ai vraiment eu le mariage que je souhaitais. Pour ça, un grand MERCI ! »",
+    author: '— M & G',
+  },
+  {
+    quote: "« Je n'aurais pas pu faire ça sans vous »",
+    body: "« Je ne sais pas comment se serait passée l'organisation de ce mariage sans toi. Je le pense vraiment quand je dis que je n'aurais pas pu faire ça sans vous. L'aide que vous apportez dans la gestion et l'organisation est vraiment inestimable. Ma mère l'a aussi dit tout à l'heure. Merci pour votre patience. »",
+    author: '— T & W',
+  },
+  {
+    quote: "« Merci d'avoir sublimé la salle »",
+    body: "« Merci Raissa. Merci d'avoir sublimé la salle. Merci encore pour tes services, que Dieu te bénisse. »",
+    author: '— A & A',
+  },
+  {
     quote: "« On ne s'arrête pas de parler de la beauté de cette journée »",
     body: "« Merci d'avoir fait de notre rêve une réalité ! Nous n'aurions pas pu imaginer une journée plus douce, naturelle, légère et sincère. Tout ce que nous voulions, et bien plus encore. »",
     author: '— Sophie & Aurélien',

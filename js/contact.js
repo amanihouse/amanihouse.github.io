@@ -4,7 +4,7 @@
 // Pour recevoir les demandes directement, creer un formulaire sur https://formspree.io
 // et coller son adresse ci-dessous (ex. 'https://formspree.io/f/abcdwxyz').
 const FORM_ENDPOINT = '';
-const CONTACT_EMAIL = 'contact@raissaevents.com';
+const CONTACT_EMAIL = 'info.amaniihouse@gmail.com';
 
 const contactForm = document.getElementById('contact-form');
 const formError = document.getElementById('form-error');
