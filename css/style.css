@@ -92,9 +92,13 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-style: italic;
+  /* monogramme calligraphie "a l'anglaise", identique partout */
+  font-family: var(--font-script);
+  font-style: normal;
   font-size: 2rem;
+  white-space: nowrap;
+  /* la boucle du H deborde a droite et le script est haut : on recentre le dessin des lettres */
+  padding: 0.26em 0.28em 0 0;
   color: var(--ivory);
   margin: 0 auto;
 }
@@ -290,12 +294,7 @@ a { color: inherit; text-decoration: none; }
 .hero-estd .monogram {
   margin: 0;
   width: 84px;
-  /* monogramme calligraphie "a l'anglaise" */
-  font-family: var(--font-script);
-  font-style: normal;
   font-size: 2.1rem;
-  white-space: nowrap;
-  padding-top: 0.15em;
 }
 .hero-title {
   font-family: var(--font-display);
