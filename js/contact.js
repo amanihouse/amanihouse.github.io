@@ -3,7 +3,7 @@
 // s'ouvre dans l'application e-mail du visiteur, deja remplie.
 // Pour recevoir les demandes directement, creer un formulaire sur https://formspree.io
 // et coller son adresse ci-dessous (ex. 'https://formspree.io/f/abcdwxyz').
-const FORM_ENDPOINT = '';
+const FORM_ENDPOINT = 'https://formspree.io/f/xjyykgwq';
 const CONTACT_EMAIL = 'info.amaniihouse@gmail.com';
 
 const contactForm = document.getElementById('contact-form');
@@ -32,6 +32,23 @@ function collectFields(form) {
     if (values.length) fields[key] = values.join(', ');
   }
   return fields;
+}
+
+// Mail recu via Formspree : objet clair, champs avec leurs vrais noms,
+// et "email" garde tel quel pour que "Repondre" ecrive directement au visiteur
+function formspreePayload(fields) {
+  const payload = {
+    _subject: demandeSubject(fields),
+    email: fields.email,
+  };
+  for (const [key, value] of Object.entries(fields)) {
+    if (key !== 'email') payload[LABELS[key]] = value;
+  }
+  return payload;
+}
+
+function demandeSubject(fields) {
+  return `Demande de contact — ${fields.evenement || 'Événement'} — ${fields.prenom} ${fields.nom}`;
 }
 
 function showSuccess() {
@@ -64,7 +81,7 @@ if (contactForm) {
         const res = await fetch(FORM_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(fields),
+          body: JSON.stringify(formspreePayload(fields)),
         });
         if (!res.ok) throw new Error(res.statusText);
         showSuccess();
@@ -80,7 +97,7 @@ if (contactForm) {
     const body = Object.entries(fields)
       .map(([key, value]) => `${LABELS[key]} : ${value}`)
       .join('\n');
-    const subject = `Demande de contact — ${fields.evenement || 'Événement'} — ${fields.prenom} ${fields.nom}`;
+    const subject = demandeSubject(fields);
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     showSuccess();
   });
