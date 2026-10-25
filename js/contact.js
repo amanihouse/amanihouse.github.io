@@ -5,6 +5,8 @@
 // et coller son adresse ci-dessous (ex. 'https://formspree.io/f/abcdwxyz').
 const FORM_ENDPOINT = 'https://formspree.io/f/xjyykgwq';
 const CONTACT_EMAIL = 'info.amaniihouse@gmail.com';
+// Agenda affiche apres l'envoi pour reserver l'appel decouverte (vide = pas d'agenda)
+const CALENDLY_URL = 'https://calendly.com/info-amaniihouse/30min';
 
 const contactForm = document.getElementById('contact-form');
 const formError = document.getElementById('form-error');
@@ -51,10 +53,32 @@ function demandeSubject(fields) {
   return `Demande de contact — ${fields.evenement || 'Événement'} — ${fields.prenom} ${fields.nom}`;
 }
 
-function showSuccess() {
+function showSuccess(fields) {
   contactForm.hidden = true;
   formSuccess.hidden = false;
-  formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  formSuccess.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  showCalendly(fields);
+}
+
+// Charge l'agenda Calendly seulement apres l'envoi, avec nom et e-mail deja remplis.
+// Si le script ne charge pas, le lien "Choisir un creneau" reste affiche.
+function showCalendly(fields) {
+  const container = document.getElementById('calendly-embed');
+  if (!CALENDLY_URL || !container) return;
+  const script = document.createElement('script');
+  script.src = 'https://assets.calendly.com/assets/external/widget.js';
+  script.onload = () => {
+    container.innerHTML = '';
+    container.classList.add('is-loaded');
+    // encodeURIComponent (et non URLSearchParams) : sinon l'espace du nom devient un "+" visible
+    const name = encodeURIComponent(`${fields.prenom} ${fields.nom}`);
+    const email = encodeURIComponent(fields.email);
+    window.Calendly.initInlineWidget({
+      url: `${CALENDLY_URL}?hide_gdpr_banner=1&name=${name}&email=${email}`,
+      parentElement: container,
+    });
+  };
+  document.head.append(script);
 }
 
 if (contactForm) {
@@ -84,7 +108,7 @@ if (contactForm) {
           body: JSON.stringify(formspreePayload(fields)),
         });
         if (!res.ok) throw new Error(res.statusText);
-        showSuccess();
+        showSuccess(fields);
       } catch {
         formError.textContent = "L'envoi a échoué. Merci de réessayer ou de nous écrire à " + CONTACT_EMAIL + '.';
         formError.hidden = false;
@@ -99,6 +123,6 @@ if (contactForm) {
       .join('\n');
     const subject = demandeSubject(fields);
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    showSuccess();
+    showSuccess(fields);
   });
 }
