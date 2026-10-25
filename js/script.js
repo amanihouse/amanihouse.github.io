@@ -21,7 +21,7 @@ if (heroSlides.length > 1) {
     heroSlides[heroIndex].classList.remove('is-active');
     heroIndex = (heroIndex + 1) % heroSlides.length;
     heroSlides[heroIndex].classList.add('is-active');
-  }, 4000);
+  }, 3000);
 }
 
 // Carrousel d'avis clients : PREV / NEXT font defiler citation + auteur
