@@ -20,7 +20,7 @@ const LABELS = {
   lieu: 'Lieu / ville',
   invites: "Nombre d'invités",
   services: 'Services souhaités',
-  budget: 'Budget estimé',
+  budget: 'Budget estimé (de l’événement)',
   message: 'Message',
 };
 
